@@ -1,5 +1,8 @@
 package training.osms.business;
 
+import javax.persistence.Entity;
+
+@Entity
 public class Category {
 	
 	private Integer id;
