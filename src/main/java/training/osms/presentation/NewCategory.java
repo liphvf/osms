@@ -7,16 +7,16 @@ import training.osms.business.CategoryController;
 
 @ManagedBean
 public class NewCategory {
-	
+
 	private Category category;
-	
+
 	public NewCategory() {
 
-	category = new Category();
+		category = new Category();
 	}
 
 	public Category getCategory() {
-		
+
 		return category;
 	}
 
@@ -25,12 +25,10 @@ public class NewCategory {
 	}
 
 	public void saveCategory() {
-		
+
 		CategoryController controller = new CategoryController();
-		
+
 		controller.saveCategory(category);
 	}
-	
-	
 
 }
