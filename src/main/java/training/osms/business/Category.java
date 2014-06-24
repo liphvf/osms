@@ -1,9 +1,11 @@
 package training.osms.business;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.Size;
 
 @Entity
 public class Category {
@@ -14,6 +16,8 @@ public class Category {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "CAT_ID")
+	@Size(min = 1, max = 100)
 	public Integer getId() {
 		return id;
 	}
@@ -22,6 +26,8 @@ public class Category {
 		this.id = id;
 	}
 
+	@Column(name = "CAT_NAME")
+	@Size(min = 1, max = 100)
 	public String getName() {
 		return name;
 	}
@@ -30,6 +36,7 @@ public class Category {
 		this.name = name;
 	}
 
+	@Column(name = "CAT_DS")
 	public String getDescription() {
 		return description;
 	}
