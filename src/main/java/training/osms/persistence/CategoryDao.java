@@ -26,7 +26,6 @@ public class CategoryDao {
 
 	public Object searchCategory(String name) {
 
-		
 		return null;
 	}
 
