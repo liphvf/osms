@@ -9,19 +9,19 @@
 	  xmlns:ui="http://java.sun.com/jsf/facelets"
 	  xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
 	<ui:composition template="/template.xhtml">
-		<ui:define name="title">New Category</ui:define>
+		<ui:define name="title">New Product</ui:define>
 		<ui:define name="content">
 			<h:form styleClass="form-horizontal" id="form">
-				<h1 class="page-header">New Category</h1>
+				<h1 class="page-header">New Product</h1>
 	
-				<osms:category id="category" categoryForm="#{newCategory.categoryForm}">
+				<osms:product id="product" productForm="#{newProduct.productForm}">	
 					<f:facet name="buttons">
 						<h:commandButton styleClass="btn btn-primary" 
 										 value="Save"
-										 action="#{newCategory.saveCategory}"/>    	  	
+										 action="#{newProduct.saveProduct}"/>    	  			
 					</f:facet>
-				</osms:category>
-	  			
+				</osms:product>
+	
 				<h:messages/>
 			</h:form>		
 		</ui:define>

@@ -9,19 +9,23 @@
 	  xmlns:ui="http://java.sun.com/jsf/facelets"
 	  xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
 	<ui:composition template="/template.xhtml">
-		<ui:define name="title">New Category</ui:define>
+		<ui:define name="title">Delete Product</ui:define>
 		<ui:define name="content">
-			<h:form styleClass="form-horizontal" id="form">
-				<h1 class="page-header">New Category</h1>
+			<h:form id="form" styleClass="form-horizontal">
+				<h1 class="page-header">Delete Product</h1>
 	
-				<osms:category id="category" categoryForm="#{newCategory.categoryForm}">
+				<osms:product productForm="#{searchProduct.productForm}" disabled="true">
 					<f:facet name="buttons">
 						<h:commandButton styleClass="btn btn-primary" 
-										 value="Save"
-										 action="#{newCategory.saveCategory}"/>    	  	
-					</f:facet>
-				</osms:category>
-	  			
+										 value="Delete"
+										 disabled="#{searchProduct.productDeleted}"
+										 action="#{searchProduct.confirmDeletion}"/>
+						<h:button styleClass="btn btn-default"
+								  value="Back"
+								  outcome="searchProduct"/>					
+					</f:facet>				
+				</osms:product>
+	
 				<h:messages/>
 			</h:form>		
 		</ui:define>

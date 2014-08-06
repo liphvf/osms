@@ -11,17 +11,21 @@
 	<ui:composition template="/template.xhtml">
 		<ui:define name="title">New Category</ui:define>
 		<ui:define name="content">
-			<h:form styleClass="form-horizontal" id="form">
-				<h1 class="page-header">New Category</h1>
+			<h:form id="form" styleClass="form-horizontal">
+				<h1 class="page-header">Delete Category</h1>
 	
-				<osms:category id="category" categoryForm="#{newCategory.categoryForm}">
+				<osms:category categoryForm="#{searchCategory.categoryForm}" disabled="true">
 					<f:facet name="buttons">
 						<h:commandButton styleClass="btn btn-primary" 
-										 value="Save"
-										 action="#{newCategory.saveCategory}"/>    	  	
+										 value="Delete"
+										 disabled="#{searchCategory.categoryDeleted}"
+										 action="#{searchCategory.confirmDeletion}"/>
+						<h:button styleClass="btn btn-default"
+								  value="Back"
+								  outcome="searchCategory"/>					
 					</f:facet>
 				</osms:category>
-	  			
+	
 				<h:messages/>
 			</h:form>		
 		</ui:define>

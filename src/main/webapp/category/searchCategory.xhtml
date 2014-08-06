@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:osms="http://java.sun.com/jsf/composite/osms"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
+<ui:composition template="/template.xhtml">
+	<ui:define name="title">Search Category</ui:define>
+	<ui:define name="content">
+		<h1 class="page-header">Search Category</h1>
+
+
+
+
+
+		<h:form styleClass="form-horizontal">
+		
+			<div class="form-group">
+				<label class="col-sm-2 control-label">Category</label>
+				<div class="col-sm-10">
+					<h:selectOneMenu styleClass="form-control"
+						value="#{searchCategory.options.fatherCategory}" disabled="#{disabled}">
+						<f:selectItem itemLabel="Select Father Category" />
+						<f:selectItems value="#{searchCategory.categoryForm.categories}" var="category"
+							itemLabel="#{category.name}" itemValue="#{category.id}"
+							disabled="#{disabled}">
+
+						</f:selectItems>
+					</h:selectOneMenu>
+				</div>
+			</div>
+
+
+			<div class="form-group">
+				<label class="col-sm-2 control-label">Name</label>
+				<div class="col-sm-10">
+					<h:inputText styleClass="form-control"
+						value="#{searchCategory.options.name}" p:placeholder="Name" />
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label class="col-sm-2 control-label">Description</label>
+				<div class="col-sm-10">
+					<h:inputText styleClass="form-control"
+						value="#{searchCategory.options.description}"
+						p:placeholder="Description" />
+				</div>
+			</div>
+
+			<div class="form-group">
+				<div class="col-sm-offset-2 col-sm-10">
+					<h:commandButton styleClass="btn btn-primary" value="Search"
+						action="#{searchCategory.search}" />
+				</div>
+			</div>
+
+			<h:dataTable value="#{searchCategory.result}" var="category"
+				styleClass="table table-bordered table-condensed table-hover table-striped"
+				columnClasses=",col-sm-6,col-sm-6"
+				rendered="#{searchCategory.result.isEmpty() == false}">
+				<h:column>
+					<f:facet name="header">
+						ID
+					</f:facet>
+					#{category.id}
+				</h:column>
+
+				<h:column>
+					<f:facet name="header">
+						Name
+					</f:facet>
+					#{category.name}
+				</h:column>
+
+				<h:column>
+					<f:facet name="header">
+						Description
+					</f:facet>				
+					#{category.description}
+				</h:column>
+
+				<h:column>
+					<h:commandLink
+						styleClass="btn btn-primary glyphicon glyphicon-pencil"
+						title="Update" action="#{searchCategory.update(category)}" />
+				</h:column>
+
+				<h:column>
+					<h:commandLink
+						styleClass="btn btn-danger glyphicon glyphicon-trash"
+						title="Delete" action="#{searchCategory.delete(category)}" />
+				</h:column>
+			</h:dataTable>
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>

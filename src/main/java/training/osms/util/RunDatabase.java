@@ -12,6 +12,4 @@ public class RunDatabase {
 		System.in.read();
 		server.stop();
 	}
-	
-	//drive jdbc, para que possa se conectar a banco de dados
 }

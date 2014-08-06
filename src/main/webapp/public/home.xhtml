@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:osms="http://java.sun.com/jsf/composite/osms"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<f:metadata>
+	<f:viewParam name="categoryId" value="#{showCategory.categoryId}" />
+</f:metadata>
+
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+	<link href="/osms/lib/bootstrap-3.1.1-dist/css/bootstrap.min.css"
+		rel="stylesheet" />
+	<script src="/osms/lib/jquery.min.js"></script>
+	<script src="/osms/lib/bootstrap-3.1.1-dist/js/bootstrap.min.js"></script>
+
+	<title>#{showCategory.category.name}</title>
+
+
+
+	<link href="/osms/lib/bootstrap-3.1.1-dist/css/dashboard.css"
+		rel="stylesheet" />
+</h:head>
+<body>
+
+	<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse"
+					data-target=".navbar-collapse">
+					<span class="sr-only">Toggle navigation</span> <span
+						class="icon-bar"></span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="/osms/faces/public/home.xhtml">Home</a>
+			</div>
+			<div class="navbar-collapse collapse">
+				<ul class="nav navbar-nav navbar-right">
+					<li><a href="/osms/faces/public/showCategory.xhtml?categoryId=1">Loja</a></li>
+					<li><a href="/osms/faces/product/searchProduct.xhtml">Admin</a></li>
+				</ul>
+				
+			</div>
+		</div>
+	</div>
+
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-sm-3 col-md-2 sidebar">
+				<ul class="nav nav-sidebar">
+					<ui:repeat var="father" value="#{showCategory.menuFatherCategory}">
+
+						<li><a href="showCategory.xhtml?categoryId=#{father.id}">#{father.name}</a></li>
+
+					</ui:repeat>
+
+				</ul>
+
+				<ul class="nav nav-sidebar">
+					<ui:repeat var="child" value="#{showCategory.category.subCategory}">
+
+						<li><a href="showCategory.xhtml?categoryId=#{child.id}">#{child.name}</a></li>
+
+					</ui:repeat>
+
+				</ul>
+			</div>
+			<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+				<h1 class="page-header">#{showCategory.category.name}</h1>
+
+				<h1> BEM VINDO A NOSSA LOJA, ESCOLHA UMA CATEGORIA PARA A COMPRA DO PRODUTO .</h1>
+
+
+			</div>
+		</div>
+	</div>
+
+
+
+
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+

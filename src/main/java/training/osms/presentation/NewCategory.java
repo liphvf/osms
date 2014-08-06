@@ -1,53 +1,51 @@
 package training.osms.presentation;
 
 import javax.faces.application.FacesMessage;
-import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
 
-import training.osms.business.Category;
-import training.osms.business.CategoryController;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
+import org.springframework.web.context.WebApplicationContext;
+
 import training.osms.business.BusinessException;
+import training.osms.business.CategoryController;
 
-@ManagedBean
+@Component
+@Scope(WebApplicationContext.SCOPE_REQUEST)
 public class NewCategory {
+	private @Autowired
+	CategoryController controller;
 
-	private Category category;
+	private CategoryForm categoryForm;
 
 	public NewCategory() {
-
-		category = new Category();
-	}
-
-	public Category getCategory() {
-
-		return category;
-	}
-
-	public void setCategory(Category category) {
-		this.category = category;
+		categoryForm = new CategoryForm();
 	}
 
 	public void saveCategory() {
-
+		String clientId;
 		FacesMessage message = new FacesMessage();
-
 		try {
-			CategoryController controller = new CategoryController();
-			controller.saveCategory(category);
-
-			message.setSummary("Blog is saved");
+			controller.saveCategory(categoryForm.getCategory());
+			clientId = null;
+			message.setSummary("Category was successfully saved");
 			message.setSeverity(FacesMessage.SEVERITY_INFO);
-
 		} catch (BusinessException e) {
-
+			clientId = "form:category:name";
 			message.setSummary(e.getMessage());
 			message.setSeverity(FacesMessage.SEVERITY_ERROR);
-
 		}
-
 		FacesContext context = FacesContext.getCurrentInstance();
-		context.addMessage("form:category:name", message);
+		context.addMessage(clientId, message);
+	}
 
+	public CategoryForm getCategoryForm() {
+		return categoryForm;
+	}
+
+	public void setCategoryForm(CategoryForm categoryForm) {
+		this.categoryForm = categoryForm;
 	}
 
 }
